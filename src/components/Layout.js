@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import 'awsm.css/dist/awsm.min.css';
-import '../../static/main.css';
 
 class Layout extends React.Component {
   render() {

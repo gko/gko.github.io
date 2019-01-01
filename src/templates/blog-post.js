@@ -8,8 +8,9 @@ import SEO from '../components/seo'
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
-    const siteTitle = this.props.data.site.siteMetadata.title
-    const { previous, next } = this.props.pageContext
+    const { siteUrl, title: siteTitle } = this.props.data.site.siteMetadata
+    const { previous, next, slug } = this.props.pageContext
+    const tweet = encodeURIComponent(`${siteUrl}${slug}`);
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -20,6 +21,13 @@ class BlogPostTemplate extends React.Component {
         </p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr />
+
+        <p className="share">
+          <a className="twitter"
+            href={`https://twitter.com/intent/tweet?text=${tweet}`}>
+            Tweet <img align="absmiddle" src="/twitter-logo.svg" alt="twitter logo"/>
+          </a>
+        </p>
 
         <ul
           style={{
@@ -57,7 +65,8 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
-        author
+        author,
+        siteUrl
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
@@ -67,6 +76,9 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+      }
+      fields {
+        slug
       }
     }
   }

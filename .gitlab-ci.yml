@@ -7,10 +7,16 @@ cache:
 stages:
   - deploy
 
+before_script:
+  - 'which ssh-agent || ( apk update && apk add openssh )'
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  - git config --global user.email "mail@konstantin.io"
+  - git config --global user.name "Konstantin Gorodinskiy"
+
 deploy:
-  before_script:
-    - git config --global user.email "mail@konstantin.io"
-    - git config --global user.name "Konstantin Gorodinskiy"
   stage: deploy
   script:
    - npm ci

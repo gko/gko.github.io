@@ -7,20 +7,11 @@ cache:
 stages:
   - deploy
 
-before_script:
-  - 'which ssh-agent || ( apk update && apk add openssh )'
-  - eval $(ssh-agent -s)
-  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
-  - mkdir -p ~/.ssh
-  - chmod 700 ~/.ssh
-  - git config --global user.email "mail@konstantin.io"
-  - git config --global user.name "Konstantin Gorodinskiy"
-
 deploy:
   stage: deploy
   script:
    - npm ci
    - npm run build
-   - npm run deploy -- -r git@github.com:gko/gko.github.io.git
+   - npm run deploy -- -r https://$TOKEN@github.com/gko/gko.github.io.git
   tags:
     - docker

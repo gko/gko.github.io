@@ -41,6 +41,7 @@
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-plugin-react": "^7.11.1",
+    "gatsby-plugin-sitemap": "^2.0.4",
     "gh-pages": "^2.0.1",
     "prettier": "^1.14.2",
     "sass": "^1.15.2"

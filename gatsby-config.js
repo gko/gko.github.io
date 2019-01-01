@@ -5,6 +5,7 @@ module.exports = {
     description: `♥ Konstantin Gorodinskiy is a web developer based in Paris.`,
     siteUrl: `https://konstantin.io/`,
     keywords: ['gorodinskiy', 'konstantin', 'gko', 'developer', 'web'],
+    siteUrl: `https://konstantin.io`,
     social: {
       twitter: 'konstantin',
       github: 'gko',
@@ -94,5 +95,6 @@ module.exports = {
         implementation: require('sass'),
       },
     },
+    `gatsby-plugin-sitemap`
   ],
 }

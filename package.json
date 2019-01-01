@@ -61,6 +61,7 @@
     "lint": "eslint --ext .js,.jsx --ignore-pattern public .",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
     "develop": "gatsby develop",
+    "clean": "gh-pages-clean",
     "build": "gatsby build --prefix-paths",
     "deploy": "gh-pages -d public -b master"
   }

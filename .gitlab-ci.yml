@@ -15,6 +15,7 @@ deploy:
   stage: deploy
   script:
    - npm i
+   - npm run --silent clean
    - npm run build
    - npm run --silent deploy -- -r https://$TOKEN@github.com/gko/gko.github.io.git
   tags:

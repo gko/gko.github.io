@@ -1,5 +1,5 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class HTML extends React.Component {
   render() {
@@ -12,17 +12,21 @@ export default class HTML extends React.Component {
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
-          {this.props.headComponents}
-        </head>
+          <meta name="google-site-verification" content="UnUpmjHYK-ovLPrET8_xJ_XgJnmCyQcrYxkWkN06Z0k" />
+          {this.props.headComponents}{' '}
+        </head>{' '}
         <body {...this.props.bodyAttributes}>
-          {this.props.preBodyComponents}
+          {' '}
+          {this.props.preBodyComponents}{' '}
           <div
             key={`body`}
             id="___gatsby"
-            dangerouslySetInnerHTML={{ __html: this.props.body }}
-          />
-          {this.props.postBodyComponents}
-        </body>
+            dangerouslySetInnerHTML={{
+              __html: this.props.body,
+            }}
+          />{' '}
+          {this.props.postBodyComponents}{' '}
+        </body>{' '}
       </html>
     )
   }

@@ -11,6 +11,6 @@ deploy:
   stage: deploy
   script:
    - npm ci
-   - node run deploy
+   - npm run deploy
   tags:
     - docker

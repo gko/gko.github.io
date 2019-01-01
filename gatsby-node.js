@@ -1,11 +1,15 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
+const isBlogPost = (filePath) => RegExp('(\/src\/posts)/.*\\.md$').test(filePath);
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
     const blogPost = path.resolve(`./src/templates/blog-post.js`)
+    const page = path.resolve(`./src/templates/page.js`)
+
     resolve(
       graphql(
         `
@@ -22,6 +26,7 @@ exports.createPages = ({ graphql, actions }) => {
                   frontmatter {
                     title
                   }
+                  fileAbsolutePath
                 }
               }
             }
@@ -43,7 +48,7 @@ exports.createPages = ({ graphql, actions }) => {
 
           createPage({
             path: post.node.fields.slug,
-            component: blogPost,
+            component: isBlogPost(post.node.fileAbsolutePath) ? blogPost : page,
             context: {
               slug: post.node.fields.slug,
               previous,
@@ -60,7 +65,10 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
+    const value = createFilePath({
+      node,
+      getNode,
+    })
     createNodeField({
       name: `slug`,
       node,

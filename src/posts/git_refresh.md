@@ -3,9 +3,9 @@ title: Refresh commit date
 date: 2019-01-01
 ---
 
-Imagine you made some commits and later want to update the date of the commits.
+Imagine that you made some commits for which you like to update the time or a date.(so basically you would keep only the chronological order)
 
-Now if you were to do it on the latest commit, you can just do:
+Now if you were to do it on the latest commit, you can just run:
 ```bash
 GIT_COMMITTER_DATE="$(date)" git commit --amend --no-edit --date "$(date)"
 ```

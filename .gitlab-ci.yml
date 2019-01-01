@@ -14,6 +14,7 @@ deploy:
   stage: deploy
   script:
    - npm ci
-   - npm run deploy
+   - npm run build
+   - npm run deploy -- -r git@github.com:gko/gko.github.io.git
   tags:
     - docker

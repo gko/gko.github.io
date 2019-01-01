@@ -20,8 +20,13 @@ To perform this action in bulk mode you can just run:
 git rebase HEAD~{number of commits} --ignore-date
 ```
 
-Now you can just create a shortcut in your `.gitconfig` like so:
+You can also create a shortcut in your `~/.gitconfig` like so:
 ```bash
 [alias]
   refresh = "!f() { git rebase HEAD~$1 --ignore-date; }; f"
+```
+
+where the parameter would be number of commits starting from `HEAD` to update, i.e.:
+```bash
+git refresh 6
 ```

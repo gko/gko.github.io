@@ -16,6 +16,6 @@ deploy:
   script:
    - npm i
    - npm run build
-   - npm run deploy -- -r https://$TOKEN@github.com/gko/gko.github.io.git
+   - npm run --silent deploy -- -r https://$TOKEN@github.com/gko/gko.github.io.git
   tags:
     - docker

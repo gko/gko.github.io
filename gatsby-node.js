@@ -1,7 +1,7 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
-const isBlogPost = (filePath) => RegExp('(\/src\/posts)/.*\\.md$').test(filePath);
+const isBlogPost = ({ node: { fileAbsolutePath } }) => RegExp('(\/src\/posts)/.*\\.md$').test(fileAbsolutePath);
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -39,7 +39,8 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         // Create blog posts pages.
-        const posts = result.data.allMarkdownRemark.edges
+        const posts = result.data.allMarkdownRemark.edges.filter(isBlogPost);
+        const pages = result.data.allMarkdownRemark.edges.filter((p) => !isBlogPost(p));
 
         posts.forEach((post, index) => {
           const previous =
@@ -48,11 +49,21 @@ exports.createPages = ({ graphql, actions }) => {
 
           createPage({
             path: post.node.fields.slug,
-            component: isBlogPost(post.node.fileAbsolutePath) ? blogPost : page,
+            component: blogPost,
             context: {
               slug: post.node.fields.slug,
               previous,
               next,
+            },
+          })
+        })
+
+        pages.forEach((post) => {
+          createPage({
+            path: post.node.fields.slug,
+            component: page,
+            context: {
+              slug: post.node.fields.slug,
             },
           })
         })

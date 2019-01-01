@@ -101,3 +101,22 @@ h3 {
 .gatsby-highlight code {
   border: none;
 }
+
+.share {
+  text-align: center;
+  a,
+  a:hover,
+  a:visited,
+  a:focus {
+    color: #777;
+    box-shadow: inset 0px -1px #ccc;
+  }
+
+  img {
+    display: inline;
+    width: 1.4rem;
+    float: none;
+    margin: 0;
+    padding: 0;
+  }
+}

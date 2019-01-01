@@ -9,7 +9,7 @@ class BlogIndex extends React.Component {
   render() {
     const { data } = this.props
     const { title, keywords } = data.site.siteMetadata
-    const posts = data.allMarkdownRemark.edges
+    const posts = data.posts.edges
 
     return (
       <Layout location={this.props.location} title={title}>
@@ -44,7 +44,10 @@ export const pageQuery = graphql`
         keywords
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    posts: allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC },
+      filter: { fileAbsolutePath: { regex: "/(\/src\/posts)/.*\\.md$/" }}
+    ) {
       edges {
         node {
           excerpt
@@ -54,6 +57,18 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
+          }
+        }
+      }
+    }
+    pages: allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC },
+      filter: { fileAbsolutePath: { regex: "/(\/src\/pages)/.*\\.md$/" }}
+    ) {
+      edges {
+        node {
+          fields {
+            slug
           }
         }
       }

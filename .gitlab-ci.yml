@@ -1,0 +1,16 @@
+image: node:8
+
+cache:
+  paths:
+  - node_modules/
+
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  script:
+   - npm ci
+   - node run deploy
+  tags:
+    - docker

@@ -1,4 +1,4 @@
-@import './theme';
+// @import './theme';
 @import '../node_modules/awsm.css/dist/awsm';
 
 html,
@@ -99,7 +99,15 @@ h3 {
 }
 
 .gatsby-highlight code {
+  padding: 1rem;
+  font-size: 0.8rem;
+}
+
+code {
   border: none;
+  background: #fdfbed;
+  padding: 0.2rem;
+  font-size: 1rem;
 }
 
 .share {

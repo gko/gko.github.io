@@ -3,7 +3,7 @@ title: Refresh commit date
 date: 2019-01-01
 ---
 
-Imagine that you made some commits for which you like to update the time or a date.(so basically you would keep only the chronological order)
+Imagine that you made some commits for which you would like to update the time or a date.(so that you would keep only the chronological order)
 
 Now if you were to do it on the latest commit, you can just run:
 ```bash

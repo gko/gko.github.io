@@ -8,6 +8,9 @@ stages:
   - deploy
 
 deploy:
+  before_script:
+    - git config --global user.email "mail@konstantin.io"
+    - git config --global user.name "Konstantin Gorodinskiy"
   stage: deploy
   script:
    - npm ci

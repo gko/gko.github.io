@@ -28,6 +28,6 @@ So when we run `npm run deploy` on dev branch gatsby builds sources from `dev` b
 
 If you have already setup a custom domain for github pages, you would notice that there has to be a `CNAME` file in the root folder of your repository that contains custom domain name.
 
-If we run `not run deploy` this file would be deleted by generated website.
+If we run `npm run deploy` this file would be deleted by generated website.
 
 To keep this file you will need to store it in `static` folder. You can find more info about static folder [here](https://www.gatsbyjs.org/docs/static-folder/).

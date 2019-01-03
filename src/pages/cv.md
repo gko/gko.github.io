@@ -1,7 +1,7 @@
 # Gorodinskiy Konstantin
 
 ## Information de contact
-- cellulaire — [+33768604594](tel:+33768604594)
+- mobile — [+33768604594](tel:+33768604594)
 - e-mail — [mail@konstantin.io](mailto:mail@konstantin.io?subject=job%20opportunity)
 
 ## Expérience professionnel
@@ -38,8 +38,8 @@ JS, coffeescript, HTML, CSS
 
 ## Formation
 - 2011 Saint-Pétersbourg Université Polytechnique — ingénieur du logiciel pour les systèmes automatisée
-- 2008 Saint-Pétersbourg Université de l’Économie et des Finances — diplôme de mathématique en économie
-- 2007 Saint-Pétersbourg Université de l’Économie et des Finances — diplôme de de baccalauréat en économie
+- 2008 Saint-Pétersbourg Université d’Économie et de Finances — diplôme de mathématique en économie
+- 2007 Saint-Pétersbourg Université d’Économie et de Finances — diplôme de de baccalauréat en économie
 
 ## Compétences linguistiques et techniques
 ### Languages
@@ -76,4 +76,4 @@ Linux, Windows, OS X
 
 ## Traits personnels
 - esprit créatif
-- capacité de l'analyse et de trouver les solution non-standard
+- capacité d'analyse et de trouver les solution non-standard

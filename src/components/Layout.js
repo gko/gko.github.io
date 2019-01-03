@@ -28,12 +28,13 @@ class Layout extends React.Component {
       )
     } else {
       header = (
-        <h3>
+        <h3 className="backLink">
           <Link
             style={{
               boxShadow: `none`,
               textDecoration: `none`,
               color: `inherit`,
+              fontWeight: 300
             }}
             to={`/`}
           >

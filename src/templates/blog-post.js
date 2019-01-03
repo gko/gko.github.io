@@ -30,6 +30,7 @@ class BlogPostTemplate extends React.Component {
         </p>
 
         <ul
+          className="navigation"
           style={{
             display: `flex`,
             flexWrap: `wrap`,

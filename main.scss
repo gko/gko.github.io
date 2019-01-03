@@ -11,7 +11,7 @@ body {
   margin: 0;
   padding-top: 0.01em;
   min-height: 40vh;
-
+  
   background: white;
   margin-bottom: 8rem;
   padding-bottom: 3rem;
@@ -90,9 +90,9 @@ hr {
   );
 }
 
-h3 {
-  font-weight: 300;
-}
+// h3 {
+//   font-weight: 300;
+// }
 
 .arrow {
   font-family: Arial, sans;
@@ -129,5 +129,19 @@ code {
     float: none;
     margin: 0;
     padding: 0;
+  }
+}
+
+@media print {
+  footer, .backLink, .share, .navigation {
+    display: none!important;
+  } 
+  
+  body { 
+    margin-bottom: 0;
+
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
   }
 }

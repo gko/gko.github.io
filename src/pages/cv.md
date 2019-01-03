@@ -1,7 +1,7 @@
 # Gorodinskiy Konstantin
 
 ## Information de contact
-- mobile — [+33768604594](tel:+33768604594)
+- mobile — [+33 7 68 60 45 94](tel:+33768604594)
 - e-mail — [mail@konstantin.io](mailto:mail@konstantin.io?subject=job%20opportunity)
 
 ## Expérience professionnel

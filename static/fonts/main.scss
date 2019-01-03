@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'PT Serif';
+  src: url('/fonts/pt.eot?') format('eot'), url('/fonts/pt.woff') format('woff'), url('/fonts/pt.ttf') format('truetype');
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PT Serif';
+  src: url('/fonts/pt_bold.eot?') format('eot'), url('/fonts/pt_bold.woff') format('woff'), url('/fonts/pt_bold.ttf') format('truetype');
+  font-display: swap;
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PT Serif';
+  src: url('/fonts/pt_italic.eot?') format('eot'), url('/fonts/pt_italic.woff') format('woff'), url('/fonts/pt_italic.ttf') format('truetype');
+  font-display: swap;
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'PT Serif';
+  src: url('/fonts/pt_bold_italic.eot?') format('eot'), url('/fonts/pt_bold_italic.woff') format('woff'), url('/fonts/pt_bold_italic.ttf') format('truetype');
+  font-display: swap;
+  font-weight: bold;
+  font-style: italic;
+}

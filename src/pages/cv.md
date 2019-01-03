@@ -48,7 +48,7 @@ JS, coffeescript, HTML, CSS
 - anglais — courant (TOEIC result- 895)
 
 ### Technique
-#### Langues
+#### Languages de programmation
 javascript(ecmascript 5th, 6th et 7th edition), scala, go, html, svg, less, sass, css, xml, xsl, sql
 
 #### Bases de données

@@ -1,4 +1,4 @@
-// @import './theme';
+@import './fonts/main';
 @import '../node_modules/awsm.css/dist/awsm';
 
 html,
@@ -143,5 +143,9 @@ code {
     box-shadow: none;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
+    
+    h1 {
+      margin-top: 0;
+    }
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import Footer from '../components/Footer';
 
 class Layout extends React.Component {
   render() {
@@ -7,7 +8,7 @@ class Layout extends React.Component {
     const rootPath = `${__PATH_PREFIX__}/`
     let header
 
-    if (location.pathname === rootPath) {
+    if (location && location.pathname === rootPath) {
       header = (
         <h1
           style={{
@@ -44,15 +45,11 @@ class Layout extends React.Component {
       )
     }
 
-    const footer = (<footer>
-      © 2018,&nbsp;<a href="mailto:hi@konstantin.io?subject=hello">Konstantin</a>
-    </footer>);
-
     return (
       <div>
         {header}
         {children}
-        {footer}
+        <Footer />
       </div>
     )
   }

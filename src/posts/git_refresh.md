@@ -1,6 +1,7 @@
 ---
 title: Refresh commit date
 date: 2019-01-01
+tags: ["git", "commit", "date"]
 ---
 
 Imagine that you made some commits for which you would like to update the time or a date.(so that you would keep only the chronological order)

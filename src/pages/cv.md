@@ -77,3 +77,6 @@ Linux, Windows, OS X
 ## Traits personnels
 - esprit créatif
 - capacité d'analyse et de trouver les solution non-standard
+
+<hr />
+<div class="share" align="center" onclick="window.print();"><button>Print</button></div>

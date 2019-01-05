@@ -100,18 +100,21 @@ hr {
 }
 
 code {
-  border: none;
-  background: #fdfbed;
+	border-radius: 0.3em;
   padding: 0.2rem;
+  background: #fdfbed;
+  border: none;
   font-size: 1rem!important;
   color: #333;
-	border-radius: 0.5em;
 }
 
 pre {
-	background: none;
+  background: #fdfbed;
+  padding: 0.2rem;
+	border-radius: 0.5em;
 
 	code {
+		background: none;
 		border: none;
 	}
 }

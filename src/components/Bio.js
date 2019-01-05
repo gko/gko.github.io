@@ -29,7 +29,7 @@ function Bio() {
             <p className="social">
               <a href={`https://twitter.com/${social.twitter}`}>twitter</a>{' '}
               &bull;&nbsp;
-              <a href={`https://github.com/${social.github}`}>Github</a>{' '}
+              <a href={`https://github.com/${social.github}`}>github</a>{' '}
               &bull;&nbsp;
               {/*<a href={`https://fr.linkedin.com/in/${social.linkedin}`}>linkedin</a> &bull;&nbsp;*/}
               <a href="/cv">CV</a>

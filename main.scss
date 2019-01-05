@@ -90,10 +90,6 @@ hr {
   );
 }
 
-// h3 {
-//   font-weight: 300;
-// }
-
 .arrow {
   font-family: Arial, sans;
 }
@@ -109,6 +105,15 @@ code {
   padding: 0.2rem;
   font-size: 1rem!important;
   color: #333;
+	border-radius: 0.5em;
+}
+
+pre {
+	background: none;
+
+	code {
+		border: none;
+	}
 }
 
 .share {

@@ -15,8 +15,9 @@ function Bio() {
               justifyContent: 'center',
               alignItems: 'center',
               flexDirection: 'column',
-              marginTop: '1em'
+              marginTop: '1em',
             }}
+            className="bio"
           >
             <Image
               fixed={data.avatar.childImageSharp.fixed}
@@ -25,10 +26,13 @@ function Bio() {
                 borderRadius: `15%`,
               }}
             />
-            <p>
-              <a href={`https://twitter.com/${social.twitter}`}>twitter</a> &bull;&nbsp;
-              <a href={`https://github.com/${social.github}`}>github</a> &bull;&nbsp;
-              <a href={`https://fr.linkedin.com/in/${social.linkedin}`}>linkedin</a>
+            <p className="social">
+              <a href={`https://twitter.com/${social.twitter}`}>twitter</a>{' '}
+              &bull;&nbsp;
+              <a href={`https://github.com/${social.github}`}>Github</a>{' '}
+              &bull;&nbsp;
+              {/*<a href={`https://fr.linkedin.com/in/${social.linkedin}`}>linkedin</a> &bull;&nbsp;*/}
+              <a href="/cv">CV</a>
             </p>
           </div>
         )
@@ -50,9 +54,9 @@ const bioQuery = graphql`
       siteMetadata {
         author
         social {
-          twitter,
-          github,
-          linkedin,
+          twitter
+          github
+          linkedin
         }
       }
     }

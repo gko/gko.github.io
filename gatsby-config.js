@@ -1,10 +1,10 @@
 module.exports = {
   siteMetadata: {
     title: `Konstantin Gorodinskiy`,
-    author: `Konstantin Gorodinskiy`,
+    author: `Konstantin`,
     description: `♥ I'm a web developer, based in Paris.`,
     siteUrl: `https://konstantin.io`,
-    keywords: ['gorodinskiy', 'konstantin', 'gko', 'developer', 'web'],
+    keywords: ['konstantin', 'gorodinskiy', 'gko', 'developer', 'web', 'frontend', 'webdeveloper', 'aws'],
     social: {
       twitter: 'konstantin',
       github: 'gko',

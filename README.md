@@ -19,7 +19,7 @@ You can use it as a `gatsby` starter as following:
 gatsby new my-website https://github.com/gko/gko.github.io
 ```
 
-You then can replace articles in [`src/posts`](https://github.com/gko/gko.github.io/dev/src/posts) and [pages/*.md](https://github.com/gko/gko.github.io/dev/src/pages) with your own.
+You then can replace articles in [`src/posts`](https://github.com/gko/gko.github.io/dev/src/posts) and [`pages/*.md`](https://github.com/gko/gko.github.io/dev/src/pages) with your own.
 
 ## How is it different from starter blog?
 

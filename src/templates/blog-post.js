@@ -10,24 +10,38 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.markdownRemark
     const { siteUrl, title: siteTitle } = this.props.data.site.siteMetadata
     const { previous, next, slug } = this.props.pageContext
-    const tweet = encodeURIComponent(`${siteUrl}${slug}`);
-		const { title, tags, date } = post.frontmatter;
+    const tweet = encodeURIComponent(`${siteUrl}${slug}`)
+    const { title, tags, date } = post.frontmatter
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title={title} description={post.excerpt} />
         <h1>{post.frontmatter.title}</h1>
-				{tags && tags.map((tag) => <div key={tag} className="tag">{tag}</div>)}
-        <p>
-          {date}
-        </p>
+        {tags && (
+          <ul
+            className="tags"
+            style={{
+              paddingLeft: 0,
+            }}
+          >
+            {tags.map(tag => (
+              <li key={tag} className="tag">
+                {tag}
+              </li>
+            ))}
+          </ul>
+        )}
+        <p>{date}</p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr />
 
         <p className="share">
-          <a className="twitter"
-            href={`https://twitter.com/intent/tweet?text=${tweet}`}>
-            Tweet <img align="absmiddle" src="/twitter-logo.svg" alt="twitter logo"/>
+          <a
+            className="twitter"
+            href={`https://twitter.com/intent/tweet?text=${tweet}`}
+          >
+            Tweet{' '}
+            <img align="absmiddle" src="/twitter-logo.svg" alt="twitter logo" />
           </a>
         </p>
 
@@ -39,7 +53,7 @@ class BlogPostTemplate extends React.Component {
             justifyContent: `space-between`,
             listStyle: `none`,
             padding: 0,
-            margin: '2rem 0 0'
+            margin: '2rem 0 0',
           }}
         >
           <li>
@@ -69,7 +83,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
-        author,
+        author
         siteUrl
       }
     }
@@ -79,8 +93,8 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-				tags
-				date(formatString: "MMMM DD, YYYY")
+        tags
+        date(formatString: "MMMM DD, YYYY")
       }
       fields {
         slug

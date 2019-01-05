@@ -90,6 +90,17 @@ hr {
   );
 }
 
+.tag {
+	background-color: #f1f8ff;
+	border-radius: .2em;
+	display: inline-block;
+	margin: 1em 0.5em 0 0;
+	padding: 0.3em 0.9em;
+	white-space: nowrap;
+	color: #0366d6;
+	font-size: 1rem;
+}
+
 .arrow {
   font-family: Arial, sans;
 }

@@ -97,8 +97,15 @@ hr {
 	margin: 1em 0.5em 0 0;
 	padding: 0.3em 0.9em;
 	white-space: nowrap;
-	color: #0366d6;
 	font-size: 1rem;
+
+	a,
+	a:hover,
+	a:visited,
+	a:focus,
+	a:active {
+		color: #0366d6;
+	}
 }
 
 .arrow {
@@ -137,7 +144,8 @@ pre {
   a,
   a:hover,
   a:visited,
-  a:focus {
+  a:focus,
+	a:active {
     color: #777;
     box-shadow: inset 0px -1px #ccc;
   }

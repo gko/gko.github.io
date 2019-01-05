@@ -5,6 +5,9 @@ import Bio from '../components/Bio'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 
+import kebabCase from "lodash/kebabCase"
+
+	//</Link>
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
@@ -25,10 +28,12 @@ class BlogPostTemplate extends React.Component {
             }}
           >
             {tags.map(tag => (
-              <li key={tag} className="tag">
-                {tag}
+							<li key={tag} className="tag">
+								<Link to={`/tags/${kebabCase(tag)}/`}>
+									{tag}
+								</Link>
               </li>
-            ))}
+						))}
           </ul>
         )}
         <p>{date}</p>

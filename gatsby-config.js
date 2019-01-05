@@ -4,7 +4,7 @@ module.exports = {
     author: `Konstantin`,
     description: `♥ I'm a web developer, based in Paris.`,
     siteUrl: `https://konstantin.io`,
-    keywords: ['konstantin', 'gorodinskiy', 'gko', 'developer', 'web', 'frontend', 'webdeveloper', 'aws'],
+    keywords: ['konstantin', 'io', 'gorodinskiy', 'gko', 'developer', 'web', 'frontend', 'webdeveloper', 'aws'],
     social: {
       twitter: 'konstantin',
       github: 'gko',

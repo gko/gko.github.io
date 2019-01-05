@@ -1,7 +1,9 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const _ = require('lodash')
 
-const isBlogPost = ({ node: { fileAbsolutePath } }) => RegExp('(\/src\/posts)/.*\\.md$').test(fileAbsolutePath);
+const isBlogPost = ({ node: { fileAbsolutePath } }) =>
+  RegExp('(/src/posts)/.*\\.md$').test(fileAbsolutePath)
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -9,14 +11,15 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     const blogPost = path.resolve(`./src/templates/blog-post.js`)
     const page = path.resolve(`./src/templates/page.js`)
+    const tagTemplate = path.resolve('src/templates/tags.js')
 
     resolve(
       graphql(
         `
           {
             allMarkdownRemark(
-              sort: { fields: [frontmatter___date], order: DESC }
-              limit: 1000
+							sort: { order: DESC, fields: [frontmatter___date] }
+							limit: 2000
             ) {
               edges {
                 node {
@@ -24,7 +27,7 @@ exports.createPages = ({ graphql, actions }) => {
                     slug
                   }
                   frontmatter {
-                    title
+                    tags
                   }
                   fileAbsolutePath
                 }
@@ -38,9 +41,9 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors)
         }
 
-        // Create blog posts pages.
-        const posts = result.data.allMarkdownRemark.edges.filter(isBlogPost);
-        const pages = result.data.allMarkdownRemark.edges.filter((p) => !isBlogPost(p));
+        const allPosts = result.data.allMarkdownRemark.edges
+        const posts = allPosts.filter(isBlogPost)
+        const pages = allPosts.filter(p => !isBlogPost(p))
 
         posts.forEach((post, index) => {
           const previous =
@@ -58,12 +61,32 @@ exports.createPages = ({ graphql, actions }) => {
           })
         })
 
-        pages.forEach((post) => {
+        pages.forEach(post => {
           createPage({
             path: post.node.fields.slug,
             component: page,
             context: {
               slug: post.node.fields.slug,
+            },
+          })
+        })
+
+        let tags = []
+
+        _.each(posts, post => {
+          if (_.get(post, 'node.frontmatter.tags')) {
+            tags = tags.concat(post.node.frontmatter.tags)
+          }
+        })
+
+        tags = _.uniq(tags)
+
+        tags.forEach(tag => {
+          createPage({
+            path: `/tags/${_.kebabCase(tag)}/`,
+            component: tagTemplate,
+            context: {
+              tag,
             },
           })
         })

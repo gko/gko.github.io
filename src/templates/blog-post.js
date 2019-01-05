@@ -3,7 +3,7 @@ import { Link, graphql } from 'gatsby'
 
 import Bio from '../components/Bio'
 import Layout from '../components/Layout'
-import SEO from '../components/seo'
+import SEO from '../components/SEO'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -11,13 +11,15 @@ class BlogPostTemplate extends React.Component {
     const { siteUrl, title: siteTitle } = this.props.data.site.siteMetadata
     const { previous, next, slug } = this.props.pageContext
     const tweet = encodeURIComponent(`${siteUrl}${slug}`);
+		const { title, tags, date } = post.frontmatter;
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title={post.frontmatter.title} description={post.excerpt} />
+        <SEO title={title} description={post.excerpt} />
         <h1>{post.frontmatter.title}</h1>
+				{tags && tags.map((tag) => <div key={tag} className="tag">{tag}</div>)}
         <p>
-          {post.frontmatter.date}
+          {date}
         </p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr />
@@ -43,14 +45,14 @@ class BlogPostTemplate extends React.Component {
           <li>
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
-                <span className="arrow">←</span> {previous.frontmatter.title}
+                <span className="arrow">←</span> {title}
               </Link>
             )}
           </li>
           <li>
             {next && (
               <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} <span className="arrow">→</span>
+                {title} <span className="arrow">→</span>
               </Link>
             )}
           </li>
@@ -77,7 +79,8 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+				tags
+				date(formatString: "MMMM DD, YYYY")
       }
       fields {
         slug

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default class HTML extends React.Component {
+class HTML extends React.Component {
   render() {
     return (
       <html {...this.props.htmlAttributes}>
@@ -32,11 +32,4 @@ export default class HTML extends React.Component {
   }
 }
 
-HTML.propTypes = {
-  htmlAttributes: PropTypes.object,
-  headComponents: PropTypes.array,
-  bodyAttributes: PropTypes.object,
-  preBodyComponents: PropTypes.array,
-  body: PropTypes.string,
-  postBodyComponents: PropTypes.array,
-}
+export default HTML;

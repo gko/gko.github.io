@@ -5,6 +5,8 @@ const _ = require('lodash')
 const isBlogPost = ({ node: { fileAbsolutePath } }) =>
   RegExp('(/src/posts)/.*\\.md$').test(fileAbsolutePath)
 
+const isPublished = ({ node: { frontmatter: { published = false } } }) => published
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
@@ -28,6 +30,7 @@ exports.createPages = ({ graphql, actions }) => {
                   }
                   frontmatter {
                     tags
+										published
                   }
                   fileAbsolutePath
                 }
@@ -42,7 +45,7 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         const allPosts = result.data.allMarkdownRemark.edges
-        const posts = allPosts.filter(isBlogPost)
+        const posts = allPosts.filter(isBlogPost).filter(isPublished)
         const pages = allPosts.filter(p => !isBlogPost(p))
 
         posts.forEach((post, index) => {

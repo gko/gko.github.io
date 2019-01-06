@@ -2,6 +2,7 @@
 title: Running «Gatsby.js» blog with github pages
 date: 2019-01-02
 tags: ["gatsby", "git", "github", "blog"]
+published: true
 ---
 
 There are many tutorials on how to run a gatsby website with github pages, but most if not all of them are focused on how to generate a website for your repository.

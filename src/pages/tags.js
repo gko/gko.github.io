@@ -51,6 +51,14 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(
       limit: 2000
+			filter: {
+				frontmatter: {
+					published: {
+						ne: false
+						ne: null			
+					}
+				}
+			}
     ) {
       group(field: frontmatter___tags) {
         fieldValue

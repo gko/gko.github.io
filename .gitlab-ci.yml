@@ -1,4 +1,4 @@
-image: gorodinskiy/node
+image: gorodinskiy/node:1
 
 cache:
   paths:

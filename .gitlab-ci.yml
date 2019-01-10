@@ -9,7 +9,11 @@ variables:
 before_script:
   - git config --global user.email "mail@konstantin.io"
   - git config --global user.name "Konstantin Gorodinskiy"
-  - apt-get update && apt-get -y install pango cairo
+  - apt-get update && apt-get -y install build-essential \
+    g++ \
+    libcairo2-dev \
+    libjpeg62-turbo-dev \
+    libpango1.0-dev
 
 deploy:
   stage: deploy

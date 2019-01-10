@@ -1,22 +1,22 @@
-image: gorodinskiy/node:1
-
-cache:
-  paths:
-  - node_modules/
+image: node:8
 
 stages:
   - deploy
 
+variables:
+  NPM_CONFIG_CACHE: /cache/npm
+
 before_script:
   - git config --global user.email "mail@konstantin.io"
   - git config --global user.name "Konstantin Gorodinskiy"
+  - apt-get update && apt-get -y install pango cairo
 
 deploy:
   stage: deploy
   script:
-   - npm i
-   - npm run --silent clean
-   - npm run build
-   - npm run --silent deploy -- -r https://$TOKEN@github.com/gko/gko.github.io.git
+    - npm ci
+    - npm run --silent clean
+    - npm run build
+    - npm run --silent deploy -- -r https://$TOKEN@github.com/gko/gko.github.io.git
   tags:
     - docker

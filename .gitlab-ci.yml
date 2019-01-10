@@ -4,7 +4,11 @@ stages:
   - deploy
 
 variables:
-  NPM_CONFIG_CACHE: /cache/npm
+  NPM_CONFIG_CACHE: "$CI_PROJECT_DIR/.npm"
+
+cache:
+  paths:
+  - .npm
 
 before_script:
   - git config --global user.email "mail@konstantin.io"

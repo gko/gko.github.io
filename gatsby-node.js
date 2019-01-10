@@ -48,7 +48,7 @@ const isPublished = ({
 
 const createPreview = (title, fileName) => {
     return new Promise((res, rej) => {
-		const width = 500 
+		const width = 600
         const canvas = createCanvas(width, width / 2)
         const ctx = canvas.getContext('2d')
 
@@ -63,7 +63,7 @@ const createPreview = (title, fileName) => {
 
         const text = getLines(ctx, title, width, fontStyle)
 
-		text.forEach((line, i) => 
+		text.forEach((line, i) =>
         	ctx.fillText(line, canvas.width / 2, canvas.height / 2 + fontSize * i)
 		);
 
@@ -131,7 +131,7 @@ exports.createPages = ({ graphql, actions }) => {
                         component: blogPost,
                         context: {
                             slug: post.node.fields.slug,
-							twitterPreview: 
+							twitterPreview:
                             previous,
                             next,
                         },

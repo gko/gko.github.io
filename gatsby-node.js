@@ -131,7 +131,6 @@ exports.createPages = ({ graphql, actions }) => {
                         component: blogPost,
                         context: {
                             slug: post.node.fields.slug,
-							twitterPreview:
                             previous,
                             next,
                         },

@@ -1,6 +1,6 @@
+const _ = require('lodash')
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
-const _ = require('lodash')
 const { registerFont, createCanvas } = require('canvas')
 const fs = require('fs')
 
@@ -48,24 +48,30 @@ const isPublished = ({
 
 const createPreview = (title, fileName) => {
     return new Promise((res, rej) => {
-		const width = 600
-        const canvas = createCanvas(width, width / 2)
+        const dpx = 2;
+        const width = 600
+        const canvas = createCanvas(width * dpx, width / 2 * dpx)
         const ctx = canvas.getContext('2d')
 
+        ctx.scale(2, 2);
         ctx.fillStyle = 'white'
-        ctx.fillRect(0, 0, canvas.width, canvas.height)
+        ctx.fillRect(0, 0, canvas.width * dpx, canvas.height * dpx);
 
-		const fontSize = 30
+        const fontSize = 30
         const fontStyle = `${fontSize}px PT Serif`
-		ctx.font = fontStyle
-		ctx.textAlign = "center";
+        ctx.font = fontStyle
+        ctx.textAlign = 'center'
         ctx.fillStyle = 'black'
 
         const text = getLines(ctx, title, width, fontStyle)
 
-		text.forEach((line, i) =>
-        	ctx.fillText(line, canvas.width / 2, canvas.height / 2 + fontSize * i)
-		);
+        text.forEach((line, i) =>
+            ctx.fillText(
+                line,
+                canvas.width / (2 * dpx),
+                canvas.height / (2 * dpx) + fontSize * i
+            )
+        )
 
         const out = fs.createWriteStream(
             path.join(__dirname, 'public/', _.kebabCase(title) + '.png')
@@ -74,7 +80,7 @@ const createPreview = (title, fileName) => {
         const stream = canvas.createPNGStream()
         stream.pipe(out)
         out.on('finish', () => res())
-    })
+    });
 }
 
 exports.createPages = ({ graphql, actions }) => {

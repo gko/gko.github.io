@@ -10,11 +10,11 @@ body {
     padding: 0;
     margin: 0;
     padding-top: 0.01em;
-    min-height: 40vh;
+    min-height: 100vh;
 
     background: white;
     margin-bottom: 8rem;
-    padding-bottom: 3rem;
+    // padding-bottom: 3rem;
 
     box-shadow: 0 1rem 2rem #111;
     -moz-box-shadow: 0 1rem 2rem #111;
@@ -54,7 +54,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     max-width: 42rem;
-    padding: 0 1.5rem;
+    padding: 0 1.5rem 3rem;
     background: white;
 }
 

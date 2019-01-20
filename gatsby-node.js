@@ -50,7 +50,7 @@ const createPreview = (title, fileName) => {
     return new Promise((res, rej) => {
         const dpx = 2;
         const width = 600
-        const canvas = createCanvas(width * dpx, width / 2 * dpx)
+        const canvas = createCanvas(width * dpx, width / 1.5 * dpx)
         const ctx = canvas.getContext('2d')
 
         ctx.scale(2, 2);

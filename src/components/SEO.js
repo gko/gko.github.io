@@ -39,7 +39,7 @@ function SEO({ description, lang, meta, keywords, title, url }) {
                             },
                             {
                                 property: `og:url`,
-                                content: url,
+                                content: url || siteUrl,
                             },
                             {
                                 property: `og:type`,
@@ -60,10 +60,6 @@ function SEO({ description, lang, meta, keywords, title, url }) {
                             {
                                 name: `twitter:description`,
                                 content: metaDescription,
-                            },
-                            {
-                                name: `twitter:url`,
-                                content: url,
                             },
                         ]
                             .concat(

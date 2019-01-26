@@ -11,6 +11,7 @@ module.exports = {
       codepen: 'konstantin',
       linkedin: 'gorodinskiy',
     },
+    repository: 'https://github.com/gko/gko.github.io'
   },
   plugins: [
     {

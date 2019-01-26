@@ -1,5 +1,6 @@
 @import './fonts/main';
 @import '../node_modules/awsm.css/dist/awsm';
+//@import '../node_modules/modern-normalize/modern-normalize.css';
 
 html,
 body {
@@ -7,6 +8,7 @@ body {
 }
 
 body {
+    -webkit-text-size-adjust: none;
     padding: 0;
     margin: 0;
     padding-top: 0.01em;
@@ -14,7 +16,6 @@ body {
 
     background: white;
     margin-bottom: 8rem;
-    // padding-bottom: 3rem;
 
     box-shadow: 0 1rem 2rem #111;
     -moz-box-shadow: 0 1rem 2rem #111;
@@ -33,7 +34,7 @@ body {
         margin: 0;
         bottom: 0;
         left: 0;
-        padding-top: 25rem;
+        padding-top: 30vh;
 
         display: flex;
         justify-content: center;
@@ -59,7 +60,7 @@ body {
 }
 
 hr {
-    max-width: 12em;
+    max-width: 12rem;
     margin: 2rem auto;
     border: none;
     height: 1px;
@@ -92,10 +93,10 @@ hr {
 
 .tag {
     background-color: #f1f8ff;
-    border-radius: 0.2em;
+    border-radius: 0.2rem;
     display: inline-block;
-    margin: 1em 0.5em 0 0;
-    padding: 0.3em 0.9em;
+    margin: 1em 0.5rem 0 0;
+    padding: 0.3rem 0.9rem;
     white-space: nowrap;
     font-size: 1rem;
 
@@ -112,18 +113,19 @@ hr {
     font-family: Arial, sans;
 }
 
-.gatsby-highlight code {
-    padding: 1rem;
-    font-size: 0.8rem !important;
+.gatsby-highlight {
+    code {
+        padding: 1rem;
+    }
 }
 
 code {
     font-family: 'IBM Plex Mono', Consolas, monospace;
-    border-radius: 0.3em;
+    border-radius: 0.3rem;
     padding: 0.2rem;
     background: #fdfbed;
     border: none;
-    font-size: 1rem !important;
+    font-size: 16px!important;
     color: #333;
 }
 
@@ -131,7 +133,8 @@ pre {
     font-family: 'IBM Plex Mono', Consolas, monospace;
     background: #fdfbed;
     padding: 0.2rem;
-    border-radius: 0.5em;
+    border-radius: 0.5rem;
+    font-size: initial;
 
     code {
         background: none;

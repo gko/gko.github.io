@@ -41,7 +41,10 @@ class BlogPostTemplate extends React.Component {
                       "datePublished": "${date}",
                       "dateModified": "${date}",
                       "author": "Konstantin",
-                      "publisher": "konstantin.io",
+                      "publisher": {
+                        type: "Person",
+                        name: "Konstantin Gorodinskiy"
+                      },
                       "mainEntityOfPage": "${siteUrl}/${kebabCase(title)}",
                       "image": [
                         "${siteUrl}/${kebabCase(title)}.png"

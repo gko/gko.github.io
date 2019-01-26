@@ -14,12 +14,13 @@ class BlogPostTemplate extends React.Component {
         const post = this.props.data.markdownRemark
         const { siteUrl, title: siteTitle } = this.props.data.site.siteMetadata
         const { previous, next, slug } = this.props.pageContext
-        const tweet = encodeURIComponent(`${siteUrl}${slug}`)
+        const url = `${siteUrl}${slug}`
+        const tweet = encodeURIComponent(url)
         const { title, tags, date } = post.frontmatter
 
         return (
             <Layout location={this.props.location} title={siteTitle}>
-                <SEO title={title} description={post.excerpt} />
+                <SEO title={title} description={post.excerpt} url={url} />
                 <Helmet title={title}>
                     <meta name="twitter:card" content="summary_large_image" />
                     <meta
@@ -77,14 +78,16 @@ class BlogPostTemplate extends React.Component {
                     <li>
                         {previous && (
                             <Link to={previous.fields.slug} rel="prev">
-                                <span className="arrow">←</span> {previous.frontmatter.title}
+                                <span className="arrow">←</span>{' '}
+                                {previous.frontmatter.title}
                             </Link>
                         )}
                     </li>
                     <li>
                         {next && (
                             <Link to={next.fields.slug} rel="next">
-                                {next.frontmatter.title} <span className="arrow">→</span>
+                                {next.frontmatter.title}{' '}
+                                <span className="arrow">→</span>
                             </Link>
                         )}
                     </li>

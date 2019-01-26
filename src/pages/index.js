@@ -15,30 +15,32 @@ class BlogIndex extends React.Component {
             <Layout location={this.props.location} title={title}>
                 <SEO title="Konstantin" keywords={keywords} />
                 <Bio />
-                {posts.map(({ node }) => {
-                    const title = node.frontmatter.title || node.fields.slug
-                    return (
-                        <div key={node.fields.slug}>
-                            <h3>
-                                <Link
-                                    style={{ boxShadow: `none` }}
-                                    to={
-                                        node.frontmatter.slug ||
-                                        node.fields.slug
-                                    }
-                                >
-                                    {title}
-                                </Link>
-                            </h3>
-                            <small>{node.frontmatter.date}</small>
-                            <p
-                                dangerouslySetInnerHTML={{
-                                    __html: node.excerpt,
-                                }}
-                            />
-                        </div>
-                    )
-                })}
+                {posts
+                    .filter(post => post.node.frontmatter.published)
+                    .map(({ node }) => {
+                        const title = node.frontmatter.title || node.fields.slug
+                        return (
+                            <div key={node.fields.slug}>
+                                <h3>
+                                    <Link
+                                        style={{ boxShadow: `none` }}
+                                        to={
+                                            node.frontmatter.slug ||
+                                            node.fields.slug
+                                        }
+                                    >
+                                        {title}
+                                    </Link>
+                                </h3>
+                                <small>{node.frontmatter.date}</small>
+                                <p
+                                    dangerouslySetInnerHTML={{
+                                        __html: node.excerpt,
+                                    }}
+                                />
+                            </div>
+                        )
+                    })}
             </Layout>
         )
     }
@@ -58,14 +60,7 @@ export const pageQuery = graphql`
         sort: { fields: [frontmatter___date], order: DESC },
         filter: {
             fileAbsolutePath: { regex: "/(\/src\/posts)/.*\\.md$/" }
-				frontmatter: {
-					published: {
-						ne: false
-						ne: null
-					}
-				}
-			}
-        ) {
+		}) {
             edges {
                 node {
                     excerpt
@@ -76,6 +71,7 @@ export const pageQuery = graphql`
                         date(formatString: "MMMM DD, YYYY")
                         title
                         slug
+                        published
                     }
                 }
             }

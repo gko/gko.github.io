@@ -139,6 +139,7 @@ exports.createPages = ({ graphql, actions }) => {
                             slug: post.node.fields.slug,
                             previous,
                             next,
+                            filename: path.basename(post.node.fileAbsolutePath)
                         },
                     })
 

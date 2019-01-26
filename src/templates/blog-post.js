@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import format from 'date-fns/format'
+import { FaPen } from 'react-icons/fa'
 
-import Bio from '../components/Bio'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import { Helmet } from 'react-helmet'
@@ -12,8 +12,12 @@ import kebabCase from 'lodash/kebabCase'
 class BlogPostTemplate extends React.Component {
     render() {
         const post = this.props.data.markdownRemark
-        const { siteUrl, title: siteTitle } = this.props.data.site.siteMetadata
-        const { previous, next, slug } = this.props.pageContext
+        const {
+            siteUrl,
+            title: siteTitle,
+            repository,
+        } = this.props.data.site.siteMetadata
+        const { previous, next, slug, filename } = this.props.pageContext
         const url = `${siteUrl}${slug}`
         const tweet = encodeURIComponent(url)
         const { title, tags, date } = post.frontmatter
@@ -32,7 +36,12 @@ class BlogPostTemplate extends React.Component {
                         name="twitter:image"
                         content={`${siteUrl}/${kebabCase(title)}.png`}
                     />
-                    <amp-img src={`${siteUrl}/${kebabCase(title)}.png`} alt={title} height="400" width="800"></amp-img>
+                    <amp-img
+                        src={`${siteUrl}/${kebabCase(title)}.png`}
+                        alt={title}
+                        height="400"
+                        width="800"
+                    />
                     <script type="application/ld+json">
                         {`{
                       "@context": "http://schema.org",
@@ -70,7 +79,7 @@ class BlogPostTemplate extends React.Component {
                         ))}
                     </ul>
                 )}
-                <p>{format(date, "MMMM DD, YYYY")}</p>
+                <p>{format(date, 'MMMM DD, YYYY')}</p>
                 <div dangerouslySetInnerHTML={{ __html: post.html }} />
                 <hr />
 
@@ -85,6 +94,10 @@ class BlogPostTemplate extends React.Component {
                             src="/twitter-logo.svg"
                             alt="twitter logo"
                         />
+                    </a>
+
+                    <a className="edit" href={`${repository}/edit/dev/src/posts/${filename}`}>
+                        <FaPen size="0.8em" />
                     </a>
                 </p>
 
@@ -130,6 +143,7 @@ export const pageQuery = graphql`
                 title
                 author
                 siteUrl
+                repository
             }
         }
         markdownRemark(fields: { slug: { eq: $slug } }) {

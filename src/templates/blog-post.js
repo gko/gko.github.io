@@ -27,6 +27,7 @@ class BlogPostTemplate extends React.Component {
                     type="article"
                 />
                 <Helmet title={title}>
+                    <script type='text/javascript' src='//cdn.ampproject.org/v0.js' async></script>
                     <meta name="twitter:card" content="summary_large_image" />
                     <meta
                         name="twitter:image"

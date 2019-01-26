@@ -166,6 +166,14 @@ pre {
     button {
         font-size: 0.9em;
     }
+
+    .edit {
+        float: right;
+        width: 0.8em;
+        height: 1.3em;
+        box-shadow: none;
+        background: none;
+    }
 }
 
 @media print {

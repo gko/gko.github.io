@@ -14,7 +14,6 @@ class BlogIndex extends React.Component {
         return (
             <Layout location={this.props.location} title={title}>
                 <SEO title="Konstantin" keywords={keywords} />
-
                 <Bio />
                 {posts.map(({ node }) => {
                     const title = node.frontmatter.title || node.fields.slug
@@ -23,7 +22,10 @@ class BlogIndex extends React.Component {
                             <h3>
                                 <Link
                                     style={{ boxShadow: `none` }}
-                                    to={node.fields.slug}
+                                    to={
+                                        node.frontmatter.slug ||
+                                        node.fields.slug
+                                    }
                                 >
                                     {title}
                                 </Link>
@@ -47,15 +49,15 @@ export default BlogIndex
 export const pageQuery = graphql`
   query {
     site {
-      siteMetadata {
-        title
-        keywords
-      }
+        siteMetadata {
+            title
+            keywords
+        }
     }
     posts: allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC },
-			filter: {
-				fileAbsolutePath: { regex: "/(\/src\/posts)/.*\\.md$/" }
+        sort: { fields: [frontmatter___date], order: DESC },
+        filter: {
+            fileAbsolutePath: { regex: "/(\/src\/posts)/.*\\.md$/" }
 				frontmatter: {
 					published: {
 						ne: false
@@ -64,30 +66,34 @@ export const pageQuery = graphql`
 				}
 			}
         ) {
-          edges {
-            node {
-              excerpt
-              fields {
-                slug
-              }
-              frontmatter {
-                date(formatString: "MMMM DD, YYYY")
-                title
-              }
+            edges {
+                node {
+                    excerpt
+                    fields {
+                        slug
+                    }
+                    frontmatter {
+                        date(formatString: "MMMM DD, YYYY")
+                        title
+                        slug
+                    }
+                }
             }
-          }
         }
         pages: allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: DESC },
-          filter: { fileAbsolutePath: { regex: "/(\/src\/pages)/.*\\.md$/" }}
+            sort: { fields: [frontmatter___date], order: DESC },
+            filter: { fileAbsolutePath: { regex: "/(\/src\/pages)/.*\\.md$/" }}
         ) {
-          edges {
-            node {
-              fields {
-                slug
-              }
+            edges {
+                node {
+                    fields {
+                        slug
+                    }
+                    frontmatter {
+                        slug
+                    }
+                }
             }
-          }
         }
-      }
+    }
 `

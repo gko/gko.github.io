@@ -1,3 +1,6 @@
+---
+slug: cv/fr
+---
 # Gorodinskiy Konstantin
 
 ## Information de contact
@@ -64,7 +67,7 @@ git, hg
 vim, emacs, eclipse, visual studio, netbeans, intellij idea, open office, microsoft office, gimp, photoshop, corel draw
 
 #### Systèmes d'exploitation
-Linux, Windows, OS X 
+Linux, Windows, OS X
 
 ## Certificats
 - 12.2012 MongoDB for Developers 10gen

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import format from 'date-fns/format'
 
 import Bio from '../components/Bio'
 import Layout from '../components/Layout'
@@ -8,7 +9,6 @@ import { Helmet } from 'react-helmet'
 
 import kebabCase from 'lodash/kebabCase'
 
-//</Link>
 class BlogPostTemplate extends React.Component {
     render() {
         const post = this.props.data.markdownRemark
@@ -20,13 +20,30 @@ class BlogPostTemplate extends React.Component {
 
         return (
             <Layout location={this.props.location} title={siteTitle}>
-                <SEO title={title} description={post.excerpt} url={url} />
+                <SEO
+                    title={title}
+                    description={post.excerpt}
+                    url={url}
+                    type="article"
+                />
                 <Helmet title={title}>
                     <meta name="twitter:card" content="summary_large_image" />
                     <meta
                         name="twitter:image"
                         content={`${siteUrl}/${kebabCase(title)}.png`}
                     />
+                    <amp-img src={`${siteUrl}/${kebabCase(title)}.png`} alt={title} height="400" width="800"></amp-img>
+                    <script type="application/ld+json">
+                        {`{
+                      "@context": "http://schema.org",
+                      "@type": "NewsArticle",
+                      "headline": "${title}",
+                      "datePublished": "${date}",
+                      "image": [
+                        "${siteUrl}/${kebabCase(title)}.png"
+                      ]
+                    }`}
+                    </script>
                 </Helmet>
 
                 <h1>{post.frontmatter.title}</h1>
@@ -46,7 +63,7 @@ class BlogPostTemplate extends React.Component {
                         ))}
                     </ul>
                 )}
-                <p>{date}</p>
+                <p>{format(date, "MMMM DD, YYYY")}</p>
                 <div dangerouslySetInnerHTML={{ __html: post.html }} />
                 <hr />
 
@@ -115,7 +132,7 @@ export const pageQuery = graphql`
             frontmatter {
                 title
                 tags
-                date(formatString: "MMMM DD, YYYY")
+                date
             }
             fields {
                 slug

@@ -1,1 +1,0 @@
-{"data":{"site":{"siteMetadata":{"title":"Konstantin Gorodinskiy","author":"Konstantin","siteUrl":"https://konstantin.io"}},"allMarkdownRemark":{"totalCount":1,"edges":[{"node":{"fields":{"slug":"/ raspberry_gitlab/"},"frontmatter":{"title":"Using raspberry as gitlab runner(with docker)"}}}]}},"pageContext":{"tag":"docker"}}

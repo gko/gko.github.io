@@ -108,6 +108,7 @@ exports.createPages = ({ graphql, actions }) => {
                                         title
                                         tags
                                         published
+                                        slug
                                     }
                                     fileAbsolutePath
                                 }
@@ -133,7 +134,7 @@ exports.createPages = ({ graphql, actions }) => {
                     const next = index === 0 ? null : posts[index - 1].node
 
                     createPage({
-                        path: post.node.fields.slug,
+                        path: post.node.frontmatter.slug || post.node.fields.slug,
                         component: blogPost,
                         context: {
                             slug: post.node.fields.slug,
@@ -151,7 +152,7 @@ exports.createPages = ({ graphql, actions }) => {
 
                 pages.forEach(post => {
                     createPage({
-                        path: post.node.fields.slug,
+                        path: post.node.frontmatter.slug || post.node.fields.slug,
                         component: page,
                         context: {
                             slug: post.node.fields.slug,

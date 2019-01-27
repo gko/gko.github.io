@@ -14,10 +14,11 @@ class BlogPostTemplate extends React.Component {
         const {
             siteUrl,
             title: siteTitle,
-            author
+            author,
         } = this.props.data.site.siteMetadata
-        const { slug } = this.props.pageContext
+        const { previous, next, slug } = this.props.pageContext
         const url = `${siteUrl}${slug}`
+        const tweet = encodeURIComponent(url)
         const { title, tags, date } = post.frontmatter
 
         return (
@@ -30,7 +31,7 @@ class BlogPostTemplate extends React.Component {
                 />
                 <Helmet title={title}>
                     <html amp="true" />
-                    <script async src="https://cdn.ampproject.org/v0.js"></script>
+                    <script async src="https://cdn.ampproject.org/v0.js" />
                     <style amp-boilerplate="">{`body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}`}</style>
                     <noscript>{`<style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style>`}</noscript>
                     <meta name="twitter:card" content="summary_large_image" />
@@ -85,6 +86,43 @@ class BlogPostTemplate extends React.Component {
                 <p>{format(date, 'MMMM DD, YYYY')}</p>
                 <div dangerouslySetInnerHTML={{ __html: post.html }} />
                 <hr />
+                <p className="share">
+                    <a
+                        className="twitter"
+                        href={`https://twitter.com/intent/tweet?text=${tweet}`}
+                    >
+                        Tweet
+                    </a>
+                </p>
+
+                <ul
+                    className="navigation"
+                    style={{
+                        display: `flex`,
+                        flexWrap: `wrap`,
+                        justifyContent: `space-between`,
+                        listStyle: `none`,
+                        padding: 0,
+                        margin: '2rem 0 0',
+                    }}
+                >
+                    <li>
+                        {previous && (
+                            <Link to={previous.fields.slug + 'amp'} rel="prev">
+                                <span className="arrow">←</span>{' '}
+                                {previous.frontmatter.title}
+                            </Link>
+                        )}
+                    </li>
+                    <li>
+                        {next && (
+                            <Link to={next.fields.slug + 'amp'} rel="next">
+                                {next.frontmatter.title}{' '}
+                                <span className="arrow">→</span>
+                            </Link>
+                        )}
+                    </li>
+                </ul>
             </Layout>
         )
     }

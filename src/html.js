@@ -1,7 +1,7 @@
 import React from 'react'
 
 const notScript = ({ type }) => type !== 'script'
-const notStyle = ({ type }) => type !== 'style'
+const isStyle = ({ type }) => type === 'style'
 
 class HTML extends React.Component {
     render() {
@@ -12,7 +12,9 @@ class HTML extends React.Component {
         } = this.props
 
         if (this.props.htmlAttributes['amp']) {
-            headComponents = headComponents.filter(notScript).filter(notStyle)
+            const [style] = headComponents.filter(isStyle)
+            style.props['amp-custom'] = ''
+            headComponents = headComponents.filter(notScript) // .filter(notStyle)
             preBodyComponents = preBodyComponents.filter(notScript)
             postBodyComponents = postBodyComponents.filter(notScript)
         }

@@ -108,7 +108,7 @@ class BlogPostTemplate extends React.Component {
                 >
                     <li>
                         {previous && (
-                            <Link to={previous.fields.slug + 'amp'} rel="prev">
+                            <Link to={previous.fields.slug} rel="prev">
                                 <span className="arrow">←</span>{' '}
                                 {previous.frontmatter.title}
                             </Link>
@@ -116,7 +116,7 @@ class BlogPostTemplate extends React.Component {
                     </li>
                     <li>
                         {next && (
-                            <Link to={next.fields.slug + 'amp'} rel="next">
+                            <Link to={next.fields.slug} rel="next">
                                 {next.frontmatter.title}{' '}
                                 <span className="arrow">→</span>
                             </Link>

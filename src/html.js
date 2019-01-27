@@ -1,7 +1,22 @@
 import React from 'react'
 
+const notScript = ({ type }) => type !== 'script'
+const notStyle = ({ type }) => type !== 'style'
+
 class HTML extends React.Component {
     render() {
+        let {
+            headComponents,
+            postBodyComponents,
+            preBodyComponents,
+        } = this.props
+
+        if (this.props.htmlAttributes['amp']) {
+            headComponents = headComponents.filter(notScript).filter(notStyle)
+            preBodyComponents = preBodyComponents.filter(notScript)
+            postBodyComponents = postBodyComponents.filter(notScript)
+        }
+
         return (
             <html {...this.props.htmlAttributes}>
                 <head>
@@ -15,11 +30,11 @@ class HTML extends React.Component {
                         name="google-site-verification"
                         content="UnUpmjHYK-ovLPrET8_xJ_XgJnmCyQcrYxkWkN06Z0k"
                     />
-                    {this.props.headComponents}{' '}
+                    {headComponents}{' '}
                 </head>{' '}
                 <body {...this.props.bodyAttributes}>
                     {' '}
-                    {this.props.preBodyComponents}{' '}
+                    {preBodyComponents}{' '}
                     <div
                         key={`body`}
                         id="___gatsby"
@@ -27,7 +42,7 @@ class HTML extends React.Component {
                             __html: this.props.body,
                         }}
                     />{' '}
-                    {this.props.postBodyComponents}{' '}
+                    {postBodyComponents}{' '}
                 </body>{' '}
             </html>
         )

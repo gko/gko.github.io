@@ -1,6 +1,5 @@
 @import './fonts/main';
 @import '../node_modules/awsm.css/dist/awsm';
-//@import '../node_modules/modern-normalize/modern-normalize.css';
 
 html,
 body {
@@ -125,7 +124,7 @@ code {
     padding: 0.2rem;
     background: #fdfbed;
     border: none;
-    font-size: 16px!important;
+    font-size: 16px;
     color: #333;
 }
 
@@ -182,7 +181,7 @@ pre {
     .share,
     .navigation,
     .tags {
-        display: none !important;
+        display: none;
     }
 
     body {

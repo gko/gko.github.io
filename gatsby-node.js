@@ -88,6 +88,7 @@ exports.createPages = ({ graphql, actions }) => {
 
     return new Promise((resolve, reject) => {
         const blogPost = path.resolve(`./src/templates/blog-post.js`)
+        const blogPostAMP = path.resolve(`./src/templates/blog-post-amp.js`)
         const page = path.resolve(`./src/templates/page.js`)
         const tagTemplate = path.resolve('src/templates/tags.js')
 
@@ -136,6 +137,17 @@ exports.createPages = ({ graphql, actions }) => {
                     createPage({
                         path: post.node.frontmatter.slug || post.node.fields.slug,
                         component: blogPost,
+                        context: {
+                            slug: post.node.fields.slug,
+                            previous,
+                            next,
+                            filename: path.basename(post.node.fileAbsolutePath)
+                        },
+                    })
+
+                    createPage({
+                        path: `${(post.node.frontmatter.slug || post.node.fields.slug)}amp`,
+                        component: blogPostAMP,
                         context: {
                             slug: post.node.fields.slug,
                             previous,

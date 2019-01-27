@@ -30,36 +30,14 @@ class BlogPostTemplate extends React.Component {
                     url={url}
                     type="article"
                 />
+
                 <Helmet title={title}>
+                    <link rel="amphtml" href={url + 'amp'} />
                     <meta name="twitter:card" content="summary_large_image" />
                     <meta
                         name="twitter:image"
                         content={`${siteUrl}/${kebabCase(title)}.png`}
                     />
-                    <amp-img
-                        src={`${siteUrl}/${kebabCase(title)}.png`}
-                        alt={title}
-                        height="400"
-                        width="800"
-                    />
-                    <script type="application/ld+json">
-                        {`{
-                      "@context": "http://schema.org",
-                      "@type": "NewsArticle",
-                      "headline": "${title}",
-                      "datePublished": "${date}",
-                      "dateModified": "${date}",
-                      "author": "Konstantin",
-                      "publisher": {
-                        type: "Person",
-                        name: "Konstantin Gorodinskiy"
-                      },
-                      "mainEntityOfPage": "${siteUrl}/${kebabCase(title)}",
-                      "image": [
-                        "${siteUrl}/${kebabCase(title)}.png"
-                      ]
-                    }`}
-                    </script>
                 </Helmet>
 
                 <h1>{post.frontmatter.title}</h1>

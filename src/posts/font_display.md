@@ -1,6 +1,7 @@
 ---
 title: How to avoid blank font
 date: 2019-01-30
+published: true
 tags: ['css', 'fonts', 'font-display']
 ---
 Loading custom fonts is a bit tricky. There is already a great article on how to do it using `@font-face`. There is a cool article «[Bulletproof @font-face](https://www.paulirish.com/2009/bulletproof-font-face-implementation-syntax/)».

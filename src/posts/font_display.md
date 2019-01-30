@@ -4,7 +4,7 @@ date: 2019-01-30
 published: true
 tags: ['css', 'fonts', 'font-display']
 ---
-Loading custom fonts is a bit tricky. There is already a great article on how to do it using `@font-face`. There is a cool article «[Bulletproof @font-face](https://www.paulirish.com/2009/bulletproof-font-face-implementation-syntax/)».
+Loading custom fonts is a bit tricky. There is already a great article on how to do it using `@font-face`: «[Bulletproof @font-face](https://www.paulirish.com/2009/bulletproof-font-face-implementation-syntax/)».
 
 Unfortunately, the default behavior in many browsers when you load a custom font is to hide the text until custom font is loaded, which means that user doesn’t see the content(which is probably why he came to your website in the first place).
 

@@ -22,8 +22,8 @@ Unfortunately, the default behavior in many browsers when you load a custom font
 
 `fallback` is basically the same as block. The difference is that it gives less time to load font.
 
-`optional` tries to swap font only if it is installed already.
+`optional` tries to swap font only if it is already installed in your OS.
 
 ## Which one is right for me
 
-For this website I decided to go with more popular option, `font-face: swap`, but the best always depends on context in which the webpage is loaded.
+For this website I decided to go with more popular option, `font-face: swap`, but the best option always depends on context in which the webpage is loaded.

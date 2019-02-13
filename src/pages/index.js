@@ -9,12 +9,12 @@ import { Helmet } from 'react-helmet'
 class BlogIndex extends React.Component {
     render() {
         const { data } = this.props
-        const { title, keywords, siteUrl } = data.site.siteMetadata
+        const { title, keywords, siteUrl, author } = data.site.siteMetadata
         const posts = data.posts.edges
 
         return (
             <Layout location={this.props.location} title={title}>
-                <SEO title="Konstantin" keywords={keywords} />
+                <SEO title={`A blog by ${author}`} keywords={keywords} />
                 <Helmet>
                     <link rel="canonical" href={siteUrl} />
                 </Helmet>
@@ -59,6 +59,7 @@ export const pageQuery = graphql`
             title
             keywords
             siteUrl
+            author
         }
     }
     posts: allMarkdownRemark(

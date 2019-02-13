@@ -4,16 +4,20 @@ import { Link, graphql } from 'gatsby'
 import Bio from '../components/Bio'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
+import { Helmet } from 'react-helmet'
 
 class BlogIndex extends React.Component {
     render() {
         const { data } = this.props
-        const { title, keywords } = data.site.siteMetadata
+        const { title, keywords, siteUrl } = data.site.siteMetadata
         const posts = data.posts.edges
 
         return (
             <Layout location={this.props.location} title={title}>
                 <SEO title="Konstantin" keywords={keywords} />
+                <Helmet>
+                    <link rel="canonical" href={siteUrl} />
+                </Helmet>
                 <Bio />
                 {posts
                     .filter(post => post.node.frontmatter.published)
@@ -54,6 +58,7 @@ export const pageQuery = graphql`
         siteMetadata {
             title
             keywords
+            siteUrl
         }
     }
     posts: allMarkdownRemark(

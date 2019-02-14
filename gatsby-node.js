@@ -4,6 +4,8 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 const { registerFont, createCanvas } = require('canvas')
 const fs = require('fs')
 
+const addSlash = (slug) => !/\/$/.test(slug) ? slug + '/' : slug;
+
 function getLines(ctx, phrase, maxPxLength, textStyle) {
     var wa = phrase.split(' '),
         phraseArray = [],
@@ -135,7 +137,7 @@ exports.createPages = ({ graphql, actions }) => {
                     const next = index === 0 ? null : posts[index - 1].node
 
                     createPage({
-                        path: post.node.frontmatter.slug || post.node.fields.slug,
+                        path: addSlash(post.node.frontmatter.slug || post.node.fields.slug),
                         component: blogPost,
                         context: {
                             slug: post.node.fields.slug,
@@ -146,7 +148,7 @@ exports.createPages = ({ graphql, actions }) => {
                     })
 
                     createPage({
-                        path: `${(post.node.frontmatter.slug || post.node.fields.slug)}amp`,
+                        path: `${(addSlash(post.node.frontmatter.slug || post.node.fields.slug))}amp/`,
                         component: blogPostAMP,
                         context: {
                             slug: post.node.fields.slug,
@@ -164,7 +166,7 @@ exports.createPages = ({ graphql, actions }) => {
 
                 pages.forEach(post => {
                     createPage({
-                        path: post.node.frontmatter.slug || post.node.fields.slug,
+                        path: addSlash(post.node.frontmatter.slug || post.node.fields.slug),
                         component: page,
                         context: {
                             slug: post.node.fields.slug,

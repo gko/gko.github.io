@@ -4,7 +4,7 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 const { registerFont, createCanvas } = require('canvas')
 const fs = require('fs')
 
-const addSlash = (slug) => !/\/$/.test(slug) ? slug + '/' : slug;
+const addSlash = slug => (!/\/$/.test(slug) ? slug + '/' : slug)
 
 function getLines(ctx, phrase, maxPxLength, textStyle) {
     var wa = phrase.split(' '),
@@ -50,14 +50,14 @@ const isPublished = ({
 
 const createPreview = (title, fileName) => {
     return new Promise((res, rej) => {
-        const dpx = 2;
+        const dpx = 2
         const width = 600
-        const canvas = createCanvas(width * dpx, width / 1.5 * dpx)
+        const canvas = createCanvas(width * dpx, (width / 1.5) * dpx)
         const ctx = canvas.getContext('2d')
 
-        ctx.scale(2, 2);
+        ctx.scale(2, 2)
         ctx.fillStyle = 'white'
-        ctx.fillRect(0, 0, canvas.width * dpx, canvas.height * dpx);
+        ctx.fillRect(0, 0, canvas.width * dpx, canvas.height * dpx)
 
         const fontSize = 30
         const fontStyle = `${fontSize}px PT Serif`
@@ -82,7 +82,7 @@ const createPreview = (title, fileName) => {
         const stream = canvas.createPNGStream()
         stream.pipe(out)
         out.on('finish', () => res())
-    });
+    })
 }
 
 exports.createPages = ({ graphql, actions }) => {
@@ -112,6 +112,7 @@ exports.createPages = ({ graphql, actions }) => {
                                         tags
                                         published
                                         slug
+                                        cover_image
                                     }
                                     fileAbsolutePath
                                 }
@@ -134,39 +135,48 @@ exports.createPages = ({ graphql, actions }) => {
                         index === posts.length - 1
                             ? null
                             : posts[index + 1].node
+
                     const next = index === 0 ? null : posts[index - 1].node
 
                     createPage({
-                        path: addSlash(post.node.frontmatter.slug || post.node.fields.slug),
+                        path: addSlash(
+                            post.node.frontmatter.slug || post.node.fields.slug
+                        ),
                         component: blogPost,
                         context: {
                             slug: post.node.fields.slug,
                             previous,
                             next,
-                            filename: path.basename(post.node.fileAbsolutePath)
+                            filename: path.basename(post.node.fileAbsolutePath),
                         },
                     })
 
                     createPage({
-                        path: `${(addSlash(post.node.frontmatter.slug || post.node.fields.slug))}amp/`,
+                        path: `${addSlash(
+                            post.node.frontmatter.slug || post.node.fields.slug
+                        )}amp/`,
                         component: blogPostAMP,
                         context: {
                             slug: post.node.fields.slug,
                             previous,
                             next,
-                            filename: path.basename(post.node.fileAbsolutePath)
+                            filename: path.basename(post.node.fileAbsolutePath),
                         },
                     })
 
-                    await createPreview(
-                        post.node.frontmatter.title,
-                        post.node.fields.slug
-                    )
+                    if (!post.node.frontmatter.cover_image) {
+                        await createPreview(
+                            post.node.frontmatter.title,
+                            post.node.fields.slug
+                        )
+                    }
                 })
 
                 pages.forEach(post => {
                     createPage({
-                        path: addSlash(post.node.frontmatter.slug || post.node.fields.slug),
+                        path: addSlash(
+                            post.node.frontmatter.slug || post.node.fields.slug
+                        ),
                         component: page,
                         context: {
                             slug: post.node.fields.slug,

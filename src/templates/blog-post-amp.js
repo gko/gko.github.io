@@ -19,7 +19,7 @@ class BlogPostTemplate extends React.Component {
         const { previous, next, slug } = this.props.pageContext
         const url = `${siteUrl}${slug}`
         const tweet = encodeURIComponent(url)
-        const { title, tags, date } = post.frontmatter
+        const { title, tags, date, cover_image } = post.frontmatter
 
         return (
             <Layout location={this.props.location} title={siteTitle}>
@@ -38,10 +38,20 @@ class BlogPostTemplate extends React.Component {
                     <link rel="canonical" href={url} />
                     <meta
                         name="twitter:image"
-                        content={`${siteUrl}/${kebabCase(title)}.png`}
+                        content={
+                            cover_image || `${siteUrl}/${kebabCase(title)}.png`
+                        }
+                    />
+                    <meta
+                        property="og:image"
+                        content={
+                            cover_image || `${siteUrl}/${kebabCase(title)}.png`
+                        }
                     />
                     <amp-img
-                        src={`${siteUrl}/${kebabCase(title)}.png`}
+                        src={
+                            cover_image || `${siteUrl}/${kebabCase(title)}.png`
+                        }
                         alt={title}
                         height="400"
                         width="800"

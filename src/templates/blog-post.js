@@ -15,12 +15,13 @@ class BlogPostTemplate extends React.Component {
         const {
             siteUrl,
             title: siteTitle,
-            repository,
+            repository
         } = this.props.data.site.siteMetadata
+
         const { previous, next, slug, filename } = this.props.pageContext
         const url = `${siteUrl}${slug}`
         const tweet = encodeURIComponent(url)
-        const { title, tags, date } = post.frontmatter
+        const { title, tags, date, cover_image } = post.frontmatter
 
         return (
             <Layout location={this.props.location} title={siteTitle}>
@@ -36,7 +37,11 @@ class BlogPostTemplate extends React.Component {
                     <meta name="twitter:card" content="summary_large_image" />
                     <meta
                         name="twitter:image"
-                        content={`${siteUrl}/${kebabCase(title)}.png`}
+                        content={cover_image || `${siteUrl}/${kebabCase(title)}.png`}
+                    />
+                    <meta
+                        property="og:image"
+                        content={cover_image || `${siteUrl}/${kebabCase(title)}.png`}
                     />
                 </Helmet>
 
@@ -74,7 +79,10 @@ class BlogPostTemplate extends React.Component {
                         />
                     </a>
 
-                    <a className="edit" href={`${repository}/edit/dev/src/posts/${filename}`}>
+                    <a
+                        className="edit"
+                        href={`${repository}/edit/dev/src/posts/${filename}`}
+                    >
                         <FaPen size="0.8em" />
                     </a>
                 </p>
@@ -132,6 +140,7 @@ export const pageQuery = graphql`
                 title
                 tags
                 date
+                cover_image
             }
             fields {
                 slug

@@ -176,6 +176,18 @@ pre {
     }
 }
 
+.header-anchor {
+    &,
+    &:hover,
+    &:active,
+    &:visited {
+        border: none;
+        text-decoration: none;
+        background: transparent;
+        box-shadow: none;
+    }
+}
+
 @media print {
     footer,
     .backLink,

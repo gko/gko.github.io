@@ -1,6 +1,8 @@
 @import './fonts/main';
 @import '../node_modules/awsm.css/dist/awsm';
 
+$body-background: white;
+
 html,
 body {
     width: 100%;
@@ -14,12 +16,22 @@ body {
     min-height: 100vh;
     color: #333;
 
-    background: white;
+    background: $body-background;
     margin-bottom: 8rem;
 
+    position: relative;
     box-shadow: 0 1rem 2rem #111;
     -moz-box-shadow: 0 1rem 2rem #111;
     -webkit-box-shadow: 0 1rem 2rem #111;
+
+    &:before {
+        content: ' ';
+        position: absolute;
+        top: -3rem;
+        height: 3rem;
+        width: 100%;
+        background: $body-background;
+    }
 
     footer {
         background: url(./bg.png) repeat;

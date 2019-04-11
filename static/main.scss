@@ -201,14 +201,6 @@ pre {
 }
 
 @media print {
-    footer,
-    .backLink,
-    .share,
-    .navigation,
-    .tags {
-        display: none!important;
-    }
-
     body {
         margin-bottom: 0;
 
@@ -218,6 +210,15 @@ pre {
 
         h1 {
             margin-top: 0;
+        }
+
+        footer,
+        .backLink,
+        .share,
+        .navigation,
+        .tags {
+            display: none;
+            visibility: hidden;
         }
     }
 }

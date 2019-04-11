@@ -1,8 +1,8 @@
 import React from 'react'
 
 const notScript = ({ type }) => type !== 'script'
-const isStyle = ({ type, key }) =>
-    type === 'style' && key !== 'gatsby-remark-autolink-headers-style'
+const isStyle = ({ type }) => type === 'style'
+const notStyle = ({ type }) => type !== 'style'
 
 class HTML extends React.Component {
     render() {
@@ -13,14 +13,20 @@ class HTML extends React.Component {
         } = this.props
 
         if (this.props.htmlAttributes['amp']) {
-            const [style] = [
-                ...headComponents.filter(isStyle),
-                ...preBodyComponents.filter(isStyle),
-                ...postBodyComponents.filter(isStyle),
-            ]
-            style.props['amp-custom'] = ''
+            const styles = headComponents.filter(isStyle)
+            const [firstStyle, ...otherStyles] = styles
+            firstStyle.props['amp-custom'] = ''
+            firstStyle.props.dangerouslySetInnerHTML.__html +=
+                (firstStyle.props.children || '') +
+                '\n' +
+                otherStyles
+                    .map(({ props: { children = '' } }) => children)
+                    .join('\n')
 
-            headComponents = headComponents.filter(notScript)
+            headComponents = [
+                ...headComponents.filter(notScript).filter(notStyle),
+                firstStyle,
+            ]
             preBodyComponents = preBodyComponents.filter(notScript)
             postBodyComponents = postBodyComponents.filter(notScript)
         }

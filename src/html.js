@@ -12,9 +12,14 @@ class HTML extends React.Component {
         } = this.props
 
         if (this.props.htmlAttributes['amp']) {
-            const [style] = headComponents.filter(isStyle)
-            style.props['amp-custom'] = ''
-            headComponents = headComponents.filter(notScript) // .filter(notStyle)
+            const styles = [
+                ...headComponents.filter(isStyle),
+                ...preBodyComponents.filter(isStyle),
+                ...postBodyComponents.filter(isStyle),
+            ]
+            styles.forEach(style => (style.props['amp-custom'] = ''))
+
+            headComponents = headComponents.filter(notScript)
             preBodyComponents = preBodyComponents.filter(notScript)
             postBodyComponents = postBodyComponents.filter(notScript)
         }

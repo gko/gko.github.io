@@ -34,6 +34,13 @@ body {
         background: $body-background;
     }
 
+    h3 {
+        & > a {
+            // fix line-height in a header
+            line-height: 1.4em;
+        }
+    }
+
     footer {
         background: url(./bg.png) repeat;
         color: white;

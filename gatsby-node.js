@@ -35,9 +35,9 @@ function getLines(ctx, phrase, maxPxLength, textStyle) {
     return phraseArray
 }
 
-registerFont(path.join(__dirname, 'static/fonts/pt.ttf'), {
-    family: 'PT Serif',
-})
+// registerFont(path.join(__dirname, 'static/fonts/pt.ttf'), {
+// family: 'PT Serif',
+// })
 
 const isBlogPost = ({ node: { fileAbsolutePath } }) =>
     RegExp('(/src/posts)/.*\\.md$').test(fileAbsolutePath)
@@ -60,7 +60,7 @@ const createPreview = (title, fileName) => {
         ctx.fillRect(0, 0, canvas.width * dpx, canvas.height * dpx)
 
         const fontSize = 30
-        const fontStyle = `${fontSize}px PT Serif`
+        const fontStyle = `${fontSize}px Arial`
         ctx.font = fontStyle
         ctx.textAlign = 'center'
         ctx.fillStyle = 'black'

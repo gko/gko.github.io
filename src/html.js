@@ -40,6 +40,10 @@ class HTML extends React.Component {
                         name="viewport"
                         content="width=device-width, initial-scale=1, shrink-to-fit=no"
                     />
+                    <link
+                        href="https://fonts.googleapis.com/css?family=Merriweather&amp;subset=cyrillic"
+                        rel="stylesheet"
+                    />
                     <meta
                         name="google-site-verification"
                         content="UnUpmjHYK-ovLPrET8_xJ_XgJnmCyQcrYxkWkN06Z0k"

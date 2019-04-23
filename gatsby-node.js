@@ -48,12 +48,13 @@ const isPublished = ({
     },
 }) => published
 
+const dpx = 2
+const width = 600
+const canvas = createCanvas(width * dpx, (width / 1.5) * dpx)
+const ctx = canvas.getContext('2d')
 const createPreview = (title, fileName) => {
     return new Promise((res, rej) => {
-        const dpx = 2
-        const width = 600
-        const canvas = createCanvas(width * dpx, (width / 1.5) * dpx)
-        const ctx = canvas.getContext('2d')
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
 
         ctx.scale(2, 2)
         ctx.fillStyle = 'white'
@@ -81,8 +82,17 @@ const createPreview = (title, fileName) => {
 
         const stream = canvas.createPNGStream()
         stream.pipe(out)
-        out.on('finish', () => res())
+        out.on('finish', () => {
+            ctx.scale(0.5, 0.5);
+            res()
+        })
     })
+}
+
+async function asyncForEach(array, callback) {
+    for (let index = 0; index < array.length; index++) {
+        await callback(array[index], index, array)
+    }
 }
 
 exports.createPages = ({ graphql, actions }) => {
@@ -130,7 +140,7 @@ exports.createPages = ({ graphql, actions }) => {
                 const posts = allPosts.filter(isBlogPost).filter(isPublished)
                 const pages = allPosts.filter(p => !isBlogPost(p))
 
-                posts.forEach(async (post, index) => {
+                asyncForEach(posts, async (post, index) => {
                     const previous =
                         index === posts.length - 1
                             ? null

@@ -11,7 +11,7 @@
     "awsm.css": "^2.1.0",
     "canvas": "^2.2.0",
     "date-fns": "^1.30.1",
-    "gatsby": "^2.0.85",
+    "gatsby": "^2.32.3",
     "gatsby-image": "^2.0.22",
     "gatsby-plugin-feed": "^2.0.8",
     "gatsby-plugin-google-analytics": "^2.0.5",

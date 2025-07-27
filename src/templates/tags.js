@@ -53,7 +53,7 @@ export const pageQuery = graphql`
             filter: {
                 frontmatter: {
                     tags: { in: [$tag] }
-                    published: { ne: false, ne: null }
+                    published: { nin: [false, null] }
                 }
             }
         ) {

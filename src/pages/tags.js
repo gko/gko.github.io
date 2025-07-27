@@ -54,8 +54,7 @@ export const pageQuery = graphql`
 			filter: {
 				frontmatter: {
 					published: {
-						ne: false
-						ne: null			
+						nin: [null, false]
 					}
 				}
 			}
